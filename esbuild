@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+const esbuild  = require("esbuild");
+
+const esbuildConfig = {
+    entryPoints: ["src/index.js"],
+    bundle: true,
+    outfile: "dist/index.js",
+    splitting: false,
+    format: "iife",
+    platform: "browser",
+    mainFields: ["main"],
+};
+
+esbuild.build(esbuildConfig).then(function()
+{
+    console.log(`Built ${esbuildConfig.outfile}`);
+}).catch(function (e)
+{
+    console.log(`Build failed. Error:`);
+    console.log(e);
+})
