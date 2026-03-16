@@ -72,7 +72,7 @@ const MODAL_HTML = `
         }
     </style>
     <div id="ngat-dialog">
-        <b>Nuke Grok Auto-Translate</b> <span>v1.0.1</span>
+        <b>Nuke Grok Auto-Translate</b> <span>v1.0.2</span>
         <p>
             Twitter now has auto-translate on by default, and only allows you disable
             it on a per-language basis by discovering Tweets in the language you wish
@@ -172,6 +172,7 @@ document.getElementById("ngat-start").addEventListener("click", async function()
             "he",
             "hi",
             "hu",
+            "ht",
             "id",
             "ga",
             "it",
