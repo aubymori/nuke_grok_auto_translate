@@ -1,4 +1,4 @@
-import { ClientTransaction, getOndemandFileUrl } from "xclienttransaction";
+import { ClientTransaction } from "xclienttransaction";
 
 const MODAL_HTML = `
 <div id="ngat">
@@ -72,7 +72,7 @@ const MODAL_HTML = `
         }
     </style>
     <div id="ngat-dialog">
-        <b>Nuke Grok Auto-Translate</b> <span>v1.0.2</span>
+        <b>Nuke Grok Auto-Translate</b> <span>v1.0.3</span>
         <p>
             Twitter now has auto-translate on by default, and only allows you disable
             it on a per-language basis by discovering Tweets in the language you wish
@@ -117,6 +117,21 @@ document.getElementById("ngat-close").addEventListener("click", function()
 {
     document.getElementById("ngat").remove();
 });
+
+function getOndemandFileUrl(homeDoc)
+{
+    const ID_REGEX = /([0-9]+):\"ondemand\.s\"/;
+    let match = ID_REGEX.exec(homeDoc);
+    if (match)
+    {
+        const NAME_REGEX = new RegExp(`${match[1]}:\"([0-9a-f]+)\"`);
+        match = NAME_REGEX.exec(homeDoc);
+        if (match)
+        {
+            return `https://abs.twimg.com/responsive-web/client-web/ondemand.s.${match[1]}a.js`;
+        }
+    }
+}
 
 document.getElementById("ngat-start").addEventListener("click", async function()
 {
@@ -197,7 +212,8 @@ document.getElementById("ngat-start").addEventListener("click", async function()
             "tr",
             "uk",
             "ur",
-            "vi"
+            "vi",
+            "zh",
         ];
 
         for (const langId of KNOWN_LANG_IDS)
